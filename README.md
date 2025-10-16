@@ -1,140 +1,202 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Fusionpact-Org/assets/main/fusionpact-hero.gif" alt="Fusionpact Hero Banner" width="350"/>
-</p>
+## Fusionpact DevOps Gauntlet Challenge
 
-<h1 align="center">🌟 Fusionpact DevOps Gauntlet: Assessment 2026</h1>
+A complete two-tier application with fault-tolerant architecture, comprehensive monitoring, and automated CI/CD pipeline deployed on AWS.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Cloud--Ready-brightgreen?style=for-the-badge&logo=googles-cloud&logoColor=white" title="Project Status"/>
-  <img src="https://img.shields.io/badge/Container-Docker--Required-blue?style=for-the-badge&logo=docker&logoColor=white" title="Docker"/>
-  <img src="https://img.shields.io/badge/CI/CD-Automation--Focus-red?style=for-the-badge&logo=githubactions&logoColor=white" title="CI/CD"/>
-  <img src="https://img.shields.io/badge/Observability-Mandatory-yellowgreen?style=for-the-badge&logo=grafana&logoColor=white" title="Monitoring"/>
-</p>
 
----
+🌟 Overview
+The Fusionpact DevOps Gauntlet Challenge demonstrates mastery of modern DevOps practices through a complete two-tier application deployment. This project showcases containerization, cloud deployment, monitoring, and automated CI/CD workflows.
 
-<h2 align="center">🎯 MISSION BRIEFING: The Challenge</h2>
+Challenge Requirements
+Level	Requirement	Implementation	Status
+Level 1	Cloud Deployment (30%)	Docker + AWS EC2 + Docker Compose	✅ Complete
+Level 2	Monitoring & Observability (30%)	Prometheus + Grafana + Metrics	✅ Complete
+Level 3	CI/CD Automation (30%)	GitHub Actions Pipeline	✅ Complete
+Docs	SOP + Screenshots (10%)	PDF Guide + Screenshots	✅ Complete
+🏆 Key Achievements
+Fault-Tolerance: Health checks, restart policies, graceful shutdowns
 
-<p align="center">
-Welcome to the <b>Fusionpact DevOps Gauntlet</b>! This is your final opportunity to prove your mastery of modern cloud engineering.<br/>
-Your task is to take this two-tier application stack and transform it into a <b>fault-tolerant, observable, and automated production system</b> in the cloud.
-</p>
+Observability: Metrics, logging, dashboards for infrastructure and application
 
----
+Automation: Full CI/CD pipeline, automated deployment on every commit
 
-<h3 align="center">💻 Application Stack Overview</h3>
+Scalability: Container-based, ready for further orchestration
 
-<p align="center">
+Security: Non-root containers, security groups, secrets management
 
-| Component | Technology | Directory | Key Feature |
-| :---: | :---: | :---: | :---: |
-| 🖼️ **Frontend** | HTML / CSS | `./frontend/` | Internship Landing Page (Requires lightweight serving) |
-| ⚡ **Backend** | Python **FastAPI** | `./backend/` | REST API, Data Handling, and **Prometheus `/metrics`** endpoint |
 
-</p>
 
----
+✨ Features
+🚀 Application Features
+Responsive Frontend: Modern HTML/CSS interface, real-time status
 
-<h2 align="center">🧪 Challenge Structure</h2>
+RESTful API: FastAPI backend with Prometheus /metrics
 
-<p align="center">
-The assignment is divided into <b>3 levels</b>. Complete all tasks in each level to qualify.
-</p>
+Health Monitoring: Built-in /health endpoints for frontend/backend
 
----
+Real-time Data: Dynamic API with test and demo endpoints
 
-<h3 align="center">🥇 Level 1 – Cloud Deployment (30%)</h3>
+Multi-platform: Containerized for local/dev/prod use
 
-**Objective:** Deploy the full stack on a cloud platform of your choice.
+📊 Monitoring
+Prometheus Metrics: Automatic FastAPI instrumentation, custom metrics
 
-**Requirements:**
-- Containerize both frontend and backend using Docker.
-- Create a `docker-compose.yml` to orchestrate the services.
-- Ensure data persistence (volume or external database).
-- Deploy the application on a public cloud (AWS, GCP, or Azure).
-- Both frontend and backend must be accessible publicly.
+Grafana Dashboards: Pre-built infra and app dashboards, live metrics
 
-**Deliverables:**
-- `Dockerfile` for frontend and backend  
-- `docker-compose.yml`  
-- Screenshot of the deployed application *(Document this in your SOP)*
+Alerting & Logging: Easily extendable for custom alerts
 
----
+🔄 DevOps
+Automated Testing: Pytest unit/regression tests run on every push
 
-<h3 align="center">🥈 Level 2 – Monitoring & Observability (30%)</h3>
+Docker Compose: Multi-container orchestration, plug-and-play
 
-**Objective:** Implement complete observability for the deployed application.
+CI/CD Pipeline: GitHub Actions triggers build, test, deploy on push
 
-**Requirements:**
-- Set up **Prometheus** to scrape backend metrics from `/metrics`.
-- Deploy **Grafana** and create dashboards for:
-  - Infrastructure metrics: CPU, memory, disk, container usage.
-  - Application metrics: request rate, latency, error counts.
-- Dashboards must visualize real-time data from the deployed services. *(Document this in your SOP)*
+Zero-downtime Deployment: Rolling container updates, health checks
 
-**Deliverables:**
-- `prometheus.yml` configuration file  
-- Screenshots of Grafana dashboards (Infrastructure + Application) *(in SOP)*
+Infra as Code: Declarative setup - easy reproducibility and modification
 
----
+🚀 Quick Start
+Prerequisites
+Docker 20.10+ and Docker Compose 2.0+
 
-<h3 align="center">🥉 Level 3 – CI/CD Automation (30%)</h3>
+Git
 
-**Objective:** Automate the build and deployment workflow.
+AWS account and EC2 access (for cloud deployment)
 
-**Requirements:**
-- Implement a CI/CD pipeline using **Jenkins**, **GitHub Actions**, or **GitLab CI/CD**.
-- The pipeline must include:
-  - Code checkout  
-  - Build and test  
-  - Docker image build and push  
-  - Automatic deployment to the cloud
+GitHub account for CI/CD
 
-**Deliverables:**
-- CI/CD configuration file (`Jenkinsfile` or `.github/workflows/main.yml`)
+Local Development
+bash
+# Clone repository
+git clone https://github.com/yourusername/fusionpact-devops-challenge.git
+cd fusionpact-devops-challenge
 
----
+# Start all services
+docker-compose up -d
 
-<h3 align="center">📑 Submission Requirements (10%)</h3>
+# View component status
+docker-compose ps
+Access Points
+Service	URL	Credentials
+Frontend	http://localhost	-
+Backend API	http://localhost:8000	-
+API Docs	http://localhost:8000/docs	-
+Prometheus	http://localhost:9090	-
+Grafana	http://localhost:3000	admin/admin123
+Validation Commands
+bash
+curl -f http://localhost                 # Frontend
+curl -f http://localhost:8000/health     # Backend health
+curl -f http://localhost:8000/api/data   # API endpoint
+curl -f http://localhost:9090/api/v1/targets  # Prometheus targets
+🛠️ Detailed Setup
+1. Local Setup
+bash
+git clone https://github.com/yourusername/fusionpact-devops-challenge.git
+cd fusionpact-devops-challenge
 
-**Instructions:**
-- Fork this repository and push your complete solution.
-- Provide a **SOP (Standard Operating Procedure)** — **do NOT** push the SOP to GitHub.  
-- Submit the SOP **via email**.
+# Ensure Docker and Compose are installed
+docker --version
+docker-compose --version
 
-**Submission Checklist:**
-- ✅ GitHub repository URL  
-- ✅ SOP PDF (attached in email)  
-- ✅ Submit the Google Form once the tasks are complete
+docker-compose up --build -d
+docker-compose logs -f
+2. AWS Cloud Deployment
+Launch EC2 instance (t3.medium recommended)
 
----
+Configure Security Group for ports: 22, 80, 3000, 8000, 9090
 
-<h3 align="center">📊 Evaluation Criteria</h3>
+SSH and install Docker/Compose:
 
-<p align="center">
+bash
+ssh -i your-key.pem ec2-user@your-instance-ip
 
-| Category | Weight |
-| :---: | :---: |
-| ☁️ Cloud Deployment | 30% |
-| 📊 Monitoring & Observability | 30% |
-| 🔁 CI/CD Automation | 30% |
-| 📄 Documentation & SOP | 10% |
+sudo yum update -y
+sudo yum install -y docker git
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -a -G docker ec2-user
 
-</p>
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 
-<p align="center">
-  ⚠️ <b>FINAL CHECK:</b> Submissions will be rejected if the deployment is not in the cloud or if the SOP is missing.
-</p>
+git clone https://github.com/yourusername/fusionpact-devops-challenge.git
+cd fusionpact-devops-challenge
+docker-compose up -d
+🔁 Challenge Levels & Completion
+✅ Level 1: Cloud Deployment (30%)
+Containerize frontend (Nginx) & backend (FastAPI)
 
----
+Orchestrate with docker-compose.yml
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Fusionpact-Org/assets/main/devops-fun.gif" alt="DevOps Fun GIF" width="400"/>
-</p>
+Deploy to AWS EC2, public accessibility
 
-<h3 align="center">🚀 SHOW US YOUR BEST WORK</h3>
+Persistence via Docker volumes
 
-<p align="center">
-Showcase <b>reliability, scalability, and automated cloud deployments</b> like a pro.  
-This is your chance to prove you can build real-world, production-ready systems.
-</p>
+✅ Level 2: Monitoring & Observability (30%)
+Prometheus configuration to scrape /metrics
+
+Grafana dashboards for infra/app metrics
+
+Real-time data visualization
+
+✅ Level 3: CI/CD Automation (30%)
+GitHub Actions pipeline: test, build, push, deploy
+
+Automated Docker image registry push
+
+SSH-based deployment to AWS
+
+
+
+📊 Monitoring
+Prometheus /metrics
+Sample queries:
+
+text
+rate(http_requests_total[5m])
+histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
+process_cpu_seconds_total
+process_resident_memory_bytes / 1024 / 1024
+Grafana Dashboards
+Infrastructure: CPU, memory, containers
+
+Application: request rate, latency, error counts
+
+Pre-configured for instant monitoring
+
+🔄 CI/CD Pipeline
+Workflow steps:
+
+On push: code checkout → testing → build/push Docker images → deploy to EC2
+
+Configuration: .github/workflows/deploy.yml
+
+Secrets: DockerHub, AWS credentials
+
+🔧 Troubleshooting
+Container issues: docker-compose logs service-name
+
+Prometheus scraping: docker exec fusionpact-prometheus wget -qO- http://backend:8000/metrics
+
+Pipeline errors: Check GitHub Actions logs, verify secrets, SSH/registry access
+
+🤝 Contributing
+Fork this repo
+
+Create feature branch (git checkout -b feature/my-feature)
+
+Commit and push
+
+Open Pull Request for review
+
+📜 License
+MIT License - see LICENSE
+
+
+
+
+
+
+
+
