@@ -1,0 +1,52 @@
+name: CI-CD -> ECR -> EC2 deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push frontend image
+        run: |
+          REPO_URI=${{ secrets.ECR_FRONTEND }}
+          docker build -t frontend:latest ./frontend
+          docker tag frontend:latest $REPO_URI:latest
+          docker push $REPO_URI:latest
+
+      - name: Build, tag, and push backend image
+        run: |
+          REPO_URI=${{ secrets.ECR_BACKEND }}
+          docker build -t backend:latest ./backend
+          docker tag backend:latest $REPO_URI:latest
+          docker push $REPO_URI:latest
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }} # private key
+          script: |
+            cd ~/fusionpact-deploy
+            export COMPOSE_PROJECT_NAME=fusionpact
+            docker-compose pull
+            docker-compose up -d --remove-orphans
+            docker image prune -f
